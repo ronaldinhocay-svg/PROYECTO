@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Altura Café – Tostado de especialidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2340d9; --blue-ink:#fff; --peach:#ffc9a8; --bg:#f6f3ee; --ink:#1b1713; --muted:#6b625a; --card:#fff; --line:#e3ddd3; --dark:#14110e;
+  color-scheme: light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#14110e;--ink:#f3ece4;--muted:#a89d92;--card:#1f1a16;--line:#342d27;--blue:#4a63ff;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#14110e;--ink:#f3ece4;--muted:#a89d92;--card:#1f1a16;--line:#342d27;--blue:#4a63ff;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1;letter-spacing:-.03em}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:3px solid var(--peach);outline-offset:3px}
+
+/* Nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--blue);color:#fff}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font:800 24px "Bricolage Grotesque",sans-serif;letter-spacing:-.04em;text-decoration:none}
+nav ul{display:flex;gap:26px;list-style:none;padding:0}
+nav a{text-decoration:none;font-weight:500}
+nav ul a:hover{text-decoration:underline;text-underline-offset:6px}
+.cart{background:var(--peach);color:#1b1713;border:0;border-radius:99px;padding:9px 18px;font:500 15px "DM Sans",sans-serif;cursor:pointer;transition:transform .2s}
+.cart.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.15)}}
+@media(max-width:700px){nav ul{display:none}}
+
+/* Hero */
+.hero{background:var(--blue);color:#fff;position:relative;overflow:hidden;padding:70px 0 0}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:20px;align-items:end}
+.hero h1{font-size:clamp(52px,9.5vw,132px);font-weight:800;padding-bottom:50px}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;transform:translateY(105%);animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.15s;color:var(--peach)}
+.hero h1 span:nth-child(3) i{animation-delay:.3s}
+@keyframes rise{to{transform:none}}
+.hero p.lead{max-width:34ch;font-size:19px;margin-bottom:26px;opacity:0;animation:fade .8s .9s forwards}
+@keyframes fade{to{opacity:1}}
+.btn{display:inline-block;background:var(--peach);color:#1b1713;padding:14px 26px;border-radius:99px;font-weight:500;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 0 rgba(0,0,0,.18)}
+.hero-copy{padding-bottom:70px}
+.cup-box{align-self:end;justify-self:center;width:min(420px,100%)}
+.cup-box svg{width:100%;display:block}
+.steam path{fill:none;stroke:#fff;stroke-width:7;stroke-linecap:round;opacity:0;animation:steam 3.2s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:.8s}.steam path:nth-child(3){animation-delay:1.6s}
+@keyframes steam{0%{opacity:0;transform:translateY(24px)}35%{opacity:.8}100%{opacity:0;transform:translateY(-34px)}}
+.cup-body{transform-origin:50% 100%;animation:pop .9s .5s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes pop{from{transform:translateY(60px) scale(.9);opacity:0}}
+.latte{animation:sway 5s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes sway{50%{transform:rotate(8deg)}}
+@media(max-width:800px){.hero .wrap{grid-template-columns:1fr}.hero-copy{padding-bottom:20px}.cup-box{width:min(300px,80%)}}
+
+/* Marquee */
+.marquee{background:var(--peach);color:#1b1713;overflow:hidden;white-space:nowrap;padding:16px 0;font:800 26px "Bricolage Grotesque",sans-serif;letter-spacing:-.02em}
+.marquee div{display:inline-block;animation:slide 28s linear infinite}
+.marquee span{margin:0 26px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* Secciones */
+section{padding:96px 0}
+h2{font-size:clamp(38px,6vw,76px);font-weight:800;margin-bottom:18px;max-width:14ch}
+.sub{color:var(--muted);max-width:52ch;margin-bottom:40px}
+
+/* Menú */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.tab{border:2px solid var(--ink);background:transparent;color:var(--ink);border-radius:99px;padding:9px 20px;font:500 16px "DM Sans",sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.items{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:8px;animation:in .45s both}
+.item:nth-child(2n){border-radius:22px 22px 22px 70px}
+.item:nth-child(3n){border-radius:70px 22px 22px 22px}
+@keyframes in{from{opacity:0;transform:scale(.96)}}
+.item h3{font-size:26px}
+.item p{color:var(--muted);font-size:15px;flex:1}
+.item .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.price{font:800 22px "Bricolage Grotesque",sans-serif}
+.add{width:42px;height:42px;border-radius:50%;border:0;background:var(--blue);color:#fff;font-size:24px;cursor:pointer;transition:transform .25s}
+.add:hover{transform:rotate(90deg) scale(1.1)}
+
+/* Origen */
+.origin{background:var(--ink);color:var(--bg)}
+.origin .grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.stat{display:flex;gap:30px;flex-wrap:wrap;margin-top:34px}
+.stat b{display:block;font:800 56px "Bricolage Grotesque",sans-serif;color:var(--peach);letter-spacing:-.04em}
+.beans{display:flex;flex-direction:column;gap:14px}
+.bean{background:rgba(255,255,255,.07);border-radius:18px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:transform .3s,background .3s}
+.bean:hover{transform:translateX(10px);background:rgba(255,255,255,.13)}
+.bean strong{font:800 22px "Bricolage Grotesque",sans-serif}
+.bean small{opacity:.7;display:block}
+.bar{height:6px;border-radius:9px;background:rgba(255,255,255,.18);width:110px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--peach);width:0;transition:width 1.2s .2s}
+.vis .bar i{width:var(--w)}
+@media(max-width:800px){.origin .grid{grid-template-columns:1fr}}
+
+/* Visita */
+.visit .grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.hours{list-style:none;padding:0;border-top:2px solid var(--ink)}
+.hours li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}
+form{display:flex;flex-direction:column;gap:12px}
+input,textarea{font:inherit;padding:14px 16px;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink)}
+input:focus,textarea:focus{border-color:var(--blue);outline:0}
+.ok{color:var(--blue);font-weight:500;min-height:1.6em}
+footer{background:var(--blue);color:#fff;padding:60px 0 40px;overflow:hidden}
+footer .big{font:800 clamp(60px,16vw,220px) "Bricolage Grotesque",sans-serif;letter-spacing:-.06em;line-height:.85;color:var(--peach)}
+footer p{margin-top:24px;opacity:.85}
+@media(max-width:800px){.visit .grid{grid-template-columns:1fr}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.rv.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.hero h1 span i{transform:none}.hero p.lead{opacity:1}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">altura.</a>
+    <ul><li><a href="#menu">Menú</a></li><li><a href="#origen">Origen</a></li><li><a href="#visita">Visítanos</a></li></ul>
+    <button class="cart" id="cart" aria-label="Pedido actual">Pedido · 0</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1><span><i>Café a</i></span><span><i>gran altura,</i></span><span><i>sin prisa.</i></span></h1>
+      <p class="lead">Granos de montaña, tostados cada mañana en nuestro local y servidos mientras aún huelen a recién hecho.</p>
+      <a class="btn" href="#menu">Ver el menú</a>
+    </div>
+    <div class="cup-box">
+      <svg viewBox="0 0 400 400" role="img" aria-label="Taza de café con vapor">
+        <g class="steam"><path d="M150 120q-22-30 0-55t0-50"/><path d="M200 120q-22-30 0-55t0-50"/><path d="M250 120q-22-30 0-55t0-50"/></g>
+        <g class="cup-body">
+          <ellipse cx="200" cy="378" rx="170" ry="16" fill="#000" opacity=".18"/>
+          <path d="M290 190h28a42 42 0 0 1 0 84h-44" fill="none" stroke="#ffc9a8" stroke-width="20" stroke-linecap="round"/>
+          <path d="M70 150h250v110a90 90 0 0 1-90 90h-70a90 90 0 0 1-90-90z" fill="#ffc9a8"/>
+          <ellipse cx="195" cy="150" rx="125" ry="26" fill="#5a3420"/>
+          <g class="latte"><path d="M195 138c-24 0-30 18-5 28 8-6 18-6 10 0 25-10 19-28-5-28z" fill="#f3dcc4" transform="translate(0 -2)"/></g>
+          <path d="M110 215h170" stroke="#2340d9" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+          <path d="M130 245h130" stroke="#2340d9" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="menu">
+  <div class="wrap rv">
+    <h2>Lo que sale de la barra</h2>
+    <p class="sub">Elige una categoría y agrega lo que quieras a tu pedido. Todo se prepara al momento.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="items" id="items" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="origin" id="origen">
+  <div class="wrap grid rv">
+    <div>
+      <h2>Del cafetal a tu taza en 14 días</h2>
+      <p class="sub" style="color:inherit;opacity:.75">Compramos directo a familias productoras, tostamos en lotes pequeños y servimos antes de que el grano pierda su aroma.</p>
+      <div class="stat">
+        <div><b data-n="18">0</b>productores aliados</div>
+        <div><b data-n="1850">0</b>m de altitud media</div>
+        <div><b data-n="14">0</b>días máx. desde el tostado</div>
+      </div>
+    </div>
+    <div class="beans">
+      <div class="bean"><div><strong>Cusco · Lavado</strong><small>Cacao, naranja, panela</small></div><div class="bar"><i style="--w:80%"></i></div></div>
+      <div class="bean"><div><strong>Cajamarca · Natural</strong><small>Frutos rojos, miel</small></div><div class="bar"><i style="--w:65%"></i></div></div>
+      <div class="bean"><div><strong>Chanchamayo · Honey</strong><small>Caramelo, durazno</small></div><div class="bar"><i style="--w:90%"></i></div></div>
+      <div class="bean"><div><strong>Amazonas · Lavado</strong><small>Nuez, flores blancas</small></div><div class="bar"><i style="--w:55%"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visita">
+  <div class="wrap grid rv">
+    <div>
+      <h2>Pasa a tomar uno</h2>
+      <ul class="hours">
+        <li><span>Lunes a viernes</span><span>7:00 – 20:00</span></li>
+        <li><span>Sábado</span><span>8:00 – 21:00</span></li>
+        <li><span>Domingo</span><span>9:00 – 18:00</span></li>
+      </ul>
+    </div>
+    <form id="form">
+      <h3 style="font-size:30px;margin-bottom:6px">Reserva una mesa</h3>
+      <input id="nm" placeholder="Tu nombre" required aria-label="Tu nombre">
+      <input id="dt" type="datetime-local" required aria-label="Fecha y hora">
+      <textarea id="ms" rows="3" placeholder="¿Algo que debamos saber?" aria-label="Mensaje"></textarea>
+      <button class="btn" style="border:0;cursor:pointer;background:var(--blue);color:#fff" type="submit">Reservar mesa</button>
+      <p class="ok" id="ok" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">altura.</div>
+    <p>© 2026 Altura Café. Tostado de especialidad, hecho con paciencia.</p>
+  </div>
+</footer>
+
+<script>
+const MENU={
+  "Espresso":[["Espresso","Doble shot, cuerpo intenso y final dulce.",8],["Cortado","Espresso con un toque de leche texturizada.",10],["Flat white","Cremoso y sedoso, doble ristretto.",13],["Capuchino","Espuma densa, cacao rallado.",13]],
+  "Filtrados":[["V60","Limpio y aromático, grano del día.",14],["Chemex","Dulce y ligero, ideal para compartir.",16],["Prensa francesa","Cuerpo completo, notas a chocolate.",13]],
+  "Fríos":[["Cold brew","Infusionado 18 horas en frío.",14],["Espresso tonic","Tónica, limón y espresso.",15],["Iced latte","Leche fría sobre espresso doble.",14]],
+  "Para comer":[["Croissant de mantequilla","Horneado cada mañana.",9],["Tostada de palta","Pan de masa madre, limón y ají.",16],["Brownie de cacao","Cacao peruano 70 %, sal marina.",10]]
+};
+const tabs=document.getElementById('tabs'),box=document.getElementById('items'),cart=document.getElementById('cart');
+let count=0;
+function show(cat){
+  [...tabs.children].forEach(b=>b.setAttribute('aria-selected',b.textContent===cat));
+  box.innerHTML='';
+  MENU[cat].forEach(([n,d,p],i)=>{
+    const el=document.createElement('article');el.className='item';el.style.animationDelay=i*70+'ms';
+    el.innerHTML=`<h3>${n}</h3><p>${d}</p><div class="row"><span class="price">S/ ${p}</span><button class="add" aria-label="Agregar ${n}">+</button></div>`;
+    el.querySelector('.add').onclick=()=>{count++;cart.textContent='Pedido · '+count;cart.classList.remove('bump');void cart.offsetWidth;cart.classList.add('bump')};
+    box.appendChild(el);
+  });
+}
+Object.keys(MENU).forEach(c=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=c;b.onclick=()=>show(c);tabs.appendChild(b)});
+show('Espresso');
+
+const words=['Tostado hoy','Grano de altura','Comercio directo','Lotes pequeños','Servido sin prisa'];
+document.getElementById('mq').innerHTML=[...words,...words,...words,...words].map(w=>`<span>${w} ✺</span>`).join('');
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('vis');
+  e.target.querySelectorAll('[data-n]').forEach(c=>{
+    const t=+c.dataset.n;let s=null;
+    const f=ts=>{s=s||ts;const k=Math.min((ts-s)/1400,1);c.textContent=Math.round(t*(1-Math.pow(1-k,3))).toLocaleString('es-PE');if(k<1)requestAnimationFrame(f)};
+    requestAnimationFrame(f);
+  });
+  io.unobserve(e.target);
+}),{threshold:.2});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+
+document.getElementById('form').onsubmit=e=>{
+  e.preventDefault();
+  document.getElementById('ok').textContent='¡Listo, '+document.getElementById('nm').value+'! Te esperamos con tu mesa reservada.';
+  e.target.reset();
+};
+</script>
+</body>
+</html>
